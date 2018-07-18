@@ -91,7 +91,7 @@ var Model = function(data){
     if (infowindow.marker != marker) {
       infowindow.marker = marker;
       infowindow.setContent('<h6>' + marker.title + '</h6>' 
-        + '<p>Rating:' + rating + '<br>Phone:' + phone + '<br><img src=' + image + 'style ="width:80px;height:80px;"></p>' );
+        + '<p><strong>Rating: </strong>' + rating + '<br><strong>Phone: </strong>' + phone + '<br><img src=' + image + 'style ="width:80px;height:80px;"></p>' );
       infowindow.open(map, marker);
       // Make sure the marker property is cleared if the infowindow is closed.
       infowindow.addListener('closeclick',function(){
@@ -106,6 +106,7 @@ var ViewModel = function(){
 
   var self = this;
   this.Locations = ko.observableArray();
+  this.userInput = ko.observable();
 
   locations.forEach(function(data){
   self.Locations.push( new Model(data) );

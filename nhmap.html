@@ -40,7 +40,7 @@
         border-radius: 3px;
         height: 100%;
         line-height: 35px;
-        padding: 10px 10px 30px 10px;
+        /*padding: 10px 10px 30px 10px;*/
         text-align: left;
         width: 340px;
       }
@@ -53,15 +53,19 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-debug.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
-  <div class="container">
       <div class="options-box">
         <h1>Places I love in Boston</h1>
-        <div>
-          
-        </div>
+        <p>Search: <input placeholder="search Location"  data-bind="textInput: userInput" /></p>
+        <h4>Locations:</h4>
+        <ul data-bind="foreach: Locations">
+          <li>
+            <span data-bind="text: title"> </span>
+            
+          </li>
+</ul>
       </div>
       <div id="map"></div>
-    </div>
+    
     <script type='text/javascript' src='/Users/jainamshah/Desktop/Nhmap/lib/jquery.js'></script>
     <script type='text/javascript' src='/Users/jainamshah/Desktop/Nhmap/lib/knockout-3.4.2.js'></script>
 

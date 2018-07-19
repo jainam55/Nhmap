@@ -23,10 +23,6 @@
         margin: 0 0 10px 0;
         text-align: center;
       }
-      #hide-listings,
-      #show-listings {
-        width: 48%;
-      }
       #map {
         bottom:0px;
         height: 100%;
@@ -35,7 +31,7 @@
         right: 0px;
       }
       .options-box {
-        background: #fff;
+        background: lightgrey;
         border: 1px solid #999;
         border-radius: 3px;
         height: 100%;
@@ -55,11 +51,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
       <div class="options-box">
         <h1>Places I love in Boston</h1>
-        <p>Search: <input placeholder="search Location"  data-bind="textInput: userInput" /></p>
+        <p>Search: <input placeholder="search Location"  data-bind="textInput: userInput"/></p>
         <h4>Locations:</h4>
-        <ul data-bind="foreach: Locations">
+        <ul data-bind="foreach: filteredLocation">
           <li>
-            <span data-bind="text: title"> </span>
+            <span data-bind="text: title, click: popup"> </span>
             
           </li>
 </ul>
@@ -74,7 +70,7 @@
      
   
     <script async defer type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxs7AqbUmUjcKU5HbXCOIONOmiE2rER-4&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxs7AqbUmUjcKU5HbXCOIONOmiE2rER-4&callback=initMap" onerror="onGMapsError()">
     </script>
 
   </body>

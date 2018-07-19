@@ -79,13 +79,20 @@ var Model = function(data){
       });
   bounds.extend(this.marker.position);
 
-
    this.marker.addListener('mouseover', function() {
             this.setIcon(highlightedIcon);
           });
    this.marker.addListener('mouseout', function() {
             this.setIcon(defaultIcon);
           });
+
+// Triggers DOM event when a list option is clicked.
+   this.popup = function(data) {
+        google.maps.event.trigger(self.marker, 'click');
+    };
+
+
+
  function populateInfoWindow(marker, infowindow, rating, phone,image) {
 
     if (infowindow.marker != marker) {
@@ -105,11 +112,26 @@ var Model = function(data){
 var ViewModel = function(){
 
   var self = this;
-  this.Locations = ko.observableArray();
-  this.userInput = ko.observable();
+  self.Locations = ko.observableArray();
+  self.userInput = ko.observable('');
 
   locations.forEach(function(data){
   self.Locations.push( new Model(data) );
+
+
+  self.filteredLocation = ko.computed(function() {
+    var filter = self.userInput().toLowerCase();
+    if (!filter) {
+      return self.Locations();
+    }else {
+      return ko.utils.arrayFilter(self.Locations(), function(item) {
+        var result = (item.title.toLowerCase().search(filter) >= 0)
+        return result;
+      });
+    }
+  });
+
+
  });
   }
 
@@ -129,6 +151,8 @@ function bindItAll() {
   largeInfowindow = new google.maps.InfoWindow();
   ko.applyBindings(new ViewModel());
 }
-
+function cantLoad() {
+    alert('The map could not be loaded.');
+}
 
 

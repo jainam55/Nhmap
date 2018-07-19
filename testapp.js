@@ -75,7 +75,11 @@ var Model = function(data){
   var bounds = new google.maps.LatLngBounds();
   this.marker.addListener('click', function() {
         populateInfoWindow(this, largeInfowindow,self.rating, self.phone,self.image);
+        toggleBounce(this);
 
+      });
+  this.marker.addListener('click', function() {
+        toggleBounce(this);
       });
   bounds.extend(this.marker.position);
 
@@ -85,11 +89,19 @@ var Model = function(data){
    this.marker.addListener('mouseout', function() {
             this.setIcon(defaultIcon);
           });
-
+  
 // Triggers DOM event when a list option is clicked.
    this.popup = function(data) {
         google.maps.event.trigger(self.marker, 'click');
     };
+  
+function toggleBounce(marker) {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
 
 
 
@@ -134,6 +146,7 @@ var ViewModel = function(){
 
  });
   }
+
 
 function makeMarkerIcon(markerColor) {
         this.markerImage = new google.maps.MarkerImage(

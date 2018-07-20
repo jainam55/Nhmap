@@ -2,75 +2,43 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <style>
-      html,
-      body {
-        font-family: Arial, sans-serif;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        height: 100%;
-        position: relative;
-      }
-      input {
-        font-size: 12px;
-      }
-      h1 {
-        color: #525454;
-        font-size: 22px;
-        margin: 0 0 10px 0;
-        text-align: center;
-      }
-      #map {
-        bottom:0px;
-        height: 100%;
-        left: 362px;
-        position: absolute;
-        right: 0px;
-      }
-      .options-box {
-        background: lightgrey;
-        border: 1px solid #999;
-        border-radius: 3px;
-        height: 100%;
-        line-height: 35px;
-        /*padding: 10px 10px 30px 10px;*/
-        text-align: left;
-        width: 340px;
-      }
-    </style>
-  </head>
-  <body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
   <!-- <script src="https://maps.googleapis.com/maps/api/js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-debug.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
-      <div class="options-box">
-        <h1>Places I love in Boston</h1>
-        <p>Search: <input placeholder="search Location"  data-bind="textInput: userInput"/></p>
-        <h4>Locations:</h4>
-        <ul data-bind="foreach: filteredLocation">
-          <li>
-            <span data-bind="text: title, click: popup"> </span>
-            
-          </li>
-</ul>
-      </div>
-      <div id="map"></div>
-    
-    <script type='text/javascript' src='/Users/jainamshah/Desktop/Nhmap/lib/jquery.js'></script>
-    <script type='text/javascript' src='/Users/jainamshah/Desktop/Nhmap/lib/knockout-3.4.2.js'></script>
+  <link rel="stylesheet" href="/Users/jainamshah/Desktop/Nhmap/css/styles.css">
+    <title>Neighborhood map</title>
+  </head>
+  <body>
+  
+  <!--  The information on the maps starts here -->
+<div class="row">
+  <div class="left" style="background-color:steelblue;">
+  <h1>Locations</h1>
+  <input type="text" id="Search" placeholder="Search.." title="Type in a category"  data-bind="textInput:userInput">
+  <ul id="Menu" data-bind="foreach: filteredLocation">
+      <li><p><span data-bind="text: title, click: popup"></span></p></li>
+  </ul>
+  </div>
+  <div class="right" id ="map" style="background-color:#ddd;">
+</div>
+</div> 
+    <script type='text/javascript' src='/Users/jainamshah/Desktop/Nhmap/js/lib/jquery.js'></script>
+    <script type='text/javascript' src='/Users/jainamshah/Desktop/Nhmap/js/lib/knockout-3.4.2.js'></script>
 
 
-    <script src="/Users/jainamshah/Desktop/Nhmap/testapp.js"></script>
+    <script src="/Users/jainamshah/Desktop/Nhmap/js/app.js"></script>
      
   
     <script async defer type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxs7AqbUmUjcKU5HbXCOIONOmiE2rER-4&callback=initMap" onerror="onGMapsError()">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxs7AqbUmUjcKU5HbXCOIONOmiE2rER-4&callback=initMap" onerror="cantLoad()">
     </script>
 
   </body>

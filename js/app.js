@@ -1,17 +1,17 @@
 var locations = [
-      {title: 'by CHLOE', 
+      {title: "by CHLOE",
       location: {lat: 42.351114, lng: -71.045021}
   },
-      {title: 'Tamazcal Tequila Cantina', 
+      {title: "Tamazcal Tequila Cantina",
       location: {lat: 42.348904, lng: -71.038292}
   },
-      {title: 'Boston Kashmir', 
+      {title: "Boston Kashmir",
       location: {lat: 42.349317, lng: -71.083926}
   },
-      {title: 'Max Brenner', 
+      {title: "Max Brenner",
       location: {lat: 42.349348, lng: -71.080829}
   },
-      {title: 'Thai Basil', 
+      {title: "Thai Basil",
       location: {lat: 42.350925, lng: -71.076643}
   }
     ];
@@ -20,8 +20,8 @@ var map;
 var largeInfowindow;
 function initMap() {
     // Constructor creates a new map - only center and zoom are required.
-    var boston = {lat: 42.361145, lng: -71.057083}
-    map = new google.maps.Map(document.getElementById('map'), {
+    var boston = {lat: 42.361145, lng: -71.057083};
+    map = new google.maps.Map(document.getElementById("map"), {
       center: boston,
       zoom: 13
     });
@@ -37,29 +37,28 @@ var Model = function(data){
   this.location = data.location;
 
   // Style the markers a bit. This will be our listing marker icon.
-  var defaultIcon = makeMarkerIcon('0091ff');
+  var defaultIcon = makeMarkerIcon("0091ff");
         // Create a "highlighted location" marker color for when the user
         // mouses over the marker.
-  var highlightedIcon = makeMarkerIcon('FFFF24');
+  var highlightedIcon = makeMarkerIcon("FFFF24");
 
   var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+this.title+"&location=Boston";
 
   $.ajax({
     url: myurl,
     headers: {
-             'Authorization':'Bearer 7L2GRhxla6IMEohCe2-zlFJ8tTyWhWuV0K4RQUhWViCvWvDuO1bFRaGZPFKe1jxnmNL5QAbrjkbLCtzFHFxcSA-tREqKA4guphW_qJ7ASjYI7C3y83XefuyNsnFOW3Yx',
-              "x-requested-with": "xhr" 
+             "Authorization":"Bearer 8jobhBUjSBRFpvBD37OoZFuuNyw2DRnKLU3t_paQ2lbz7CK3_cfJHWMkPXJLSchWhuFlP1VI4IOcee7b9Fm-X_rEA0cO0KdqWruTBqhOxmYdSNIq8ruEGomf7fpVW3Yx"
     },
-    crossDomain: 'true',
-    method: 'GET',
-    dataType: 'json',
+    crossDomain: "true",
+    method: "GET",
+    dataType: "json",
     success: function(response){
       self.rating = JSON.stringify(response.businesses[0]["rating"]);
-      self.phone = JSON.stringify(response.businesses[0]["phone"]); 
+      self.phone = JSON.stringify(response.businesses[0]["phone"]);
       self.image = JSON.stringify(response.businesses[0]["image_url"]);},
     error: function(error){
-      alert('Yelp Didnt retrieve it');
-       console.log('problem!!!!');
+      alert("Yelp Didnt retrieve it'");
+       console.log("problem!!!!");
    }
 
   });
@@ -70,29 +69,26 @@ var Model = function(data){
     animation: google.maps.Animation.DROP,
     icon: defaultIcon
  });
-  
   this.marker.setMap(map);
   var bounds = new google.maps.LatLngBounds();
   this.marker.addListener('click', function() {
         populateInfoWindow(this, largeInfowindow,self.rating, self.phone,self.image);
-        
-
       });
-  this.marker.addListener('click', function() {
+  this.marker.addListener("click", function() {
         toggleBounce(this);
       });
   bounds.extend(this.marker.position);
 
-   this.marker.addListener('mouseover', function() {
+   this.marker.addListener("mouseover", function() {
             this.setIcon(highlightedIcon);
           });
-   this.marker.addListener('mouseout', function() {
+   this.marker.addListener("mouseout", function() {
             this.setIcon(defaultIcon);
           });
   
 // Triggers DOM event when a list option is clicked.
    this.popup = function(data) {
-        google.maps.event.trigger(self.marker, 'click');
+        google.maps.event.trigger(self.marker, "click");
     };
   
 function toggleBounce(marker) {
@@ -109,8 +105,7 @@ function toggleBounce(marker) {
 
     if (infowindow.marker != marker) {
       infowindow.marker = marker;
-      infowindow.setContent('<h6>' + marker.title + '</h6>' 
-        + '<p><strong>Rating: </strong>' + rating + '<br><strong>Phone: </strong>' + phone + '<br><img src=' + image + 'style ="width:80px;height:80px;"></p>' );
+      infowindow.setContent('<h6>' + marker.title + '</h6>' + '<p><strong>Rating: </strong>' + rating + '<br><strong>Phone: </strong>' + phone + '<br><img src=' + image + 'style ="width:80px;height:80px;"></p>' );
       infowindow.open(map, marker);
       // Make sure the marker property is cleared if the infowindow is closed.
       infowindow.addListener('closeclick',function(){
@@ -119,7 +114,7 @@ function toggleBounce(marker) {
     }
   }
  
-}
+};
 
 var ViewModel = function(){
 
@@ -137,7 +132,7 @@ var ViewModel = function(){
       return self.Locations();
     }else {
       return ko.utils.arrayFilter(self.Locations(), function(item) {
-        var result = (item.title.toLowerCase().search(filter) >= 0)
+        var result = (item.title.toLowerCase().search(filter) >= 0);
         return result;
       });
     }
@@ -145,7 +140,7 @@ var ViewModel = function(){
 
 
  });
-  }
+  };
 
 
 function makeMarkerIcon(markerColor) {
@@ -167,5 +162,3 @@ function bindItAll() {
 function cantLoad() {
     alert('The map could not be loaded.');
 }
-
-

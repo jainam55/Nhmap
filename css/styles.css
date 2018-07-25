@@ -27,6 +27,7 @@ body{
     .right {
   -webkit-flex: 75%;
   padding: 15px;
+  height: 700px;
 }
 
   #Search {

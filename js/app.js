@@ -18,6 +18,8 @@ var locations = [
 
 var map;
 var largeInfowindow;
+var currentMarker = null;
+
 function initMap() {
     // Constructor creates a new map - only center and zoom are required.
     var boston = {lat: 42.361145, lng: -71.057083};
@@ -73,6 +75,7 @@ var Model = function(data){
   var bounds = new google.maps.LatLngBounds();
   this.marker.addListener('click', function() {
         populateInfoWindow(this, largeInfowindow,self.rating, self.phone,self.image);
+        toggleBounce(this); 
       });
   this.marker.addListener("click", function() {
         toggleBounce(this);

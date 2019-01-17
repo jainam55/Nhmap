@@ -1,5 +1,5 @@
 # Neighboorhood Google Map Project
-Neighboor Hood Map Project is part of Udacity's Front-end module which makes things familiar with front-end technologies like javasvript and making API calls to different web services.
+Neighboor Hood Map Project is a Front-end module which makes things familiar with front-end technologies like javasvript and making API calls to different web services.
 This project uses Google maps Api and Yelp  API to get information regarding my favourite places in Boston.
 Whenever an user clicks the map marker, It gives you the information like phone number and ratings for that place.
 
